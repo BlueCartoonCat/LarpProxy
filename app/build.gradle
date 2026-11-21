@@ -2,6 +2,9 @@ plugins {
     id 'com.android.application'
 }
 
+def configuredVersionCode = System.getenv('LARPPROXY_VERSION_CODE')?.trim()
+def configuredVersionName = System.getenv('LARPPROXY_VERSION_NAME')?.trim()
+
 android {
     namespace 'io.github.bluecartooncat.larpproxy'
     compileSdk 36
@@ -10,8 +13,8 @@ android {
         applicationId 'io.github.bluecartooncat.larpproxy'
         minSdk 26
         targetSdk 36
-        versionCode (System.getenv('LARPPROXY_VERSION_CODE') ?: '2').toInteger()
-        versionName System.getenv('LARPPROXY_VERSION_NAME') ?: '1.1.0'
+        versionCode configuredVersionCode ? configuredVersionCode.toInteger() : 2
+        versionName configuredVersionName ?: '1.1.0'
     }
     signingConfigs {
         release {
