@@ -1,0 +1,36 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'io.github.bluecartooncat.larpproxy'
+    compileSdk 36
+
+    defaultConfig {
+        applicationId 'io.github.bluecartooncat.larpproxy'
+        minSdk 26
+        targetSdk 36
+        versionCode (System.getenv('LARPPROXY_VERSION_CODE') ?: '2').toInteger()
+        versionName System.getenv('LARPPROXY_VERSION_NAME') ?: '1.1.0'
+    }
+    signingConfigs {
+        release {
+            def keystore = System.getenv('LARPPROXY_KEYSTORE_PATH')
+            if (keystore) {
+                storeFile file(keystore)
+                storePassword System.getenv('LARPPROXY_KEYSTORE_PASSWORD')
+                keyAlias System.getenv('LARPPROXY_KEY_ALIAS')
+                keyPassword System.getenv('LARPPROXY_KEY_PASSWORD')
+            }
+        }
+    }
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
