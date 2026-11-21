@@ -2,6 +2,7 @@
 
 LarpProxy forwards Android Auto's Developer Mode head unit server from `127.0.0.1:5277` to a port on the phone's network interface. Choose either raw TCP or WebSocket as the client-facing transport.
 
+A WebSocket player is available at: https://bluecartooncat.github.io/larpplay/
 ## Use
 
 1. In Android Auto developer settings, start the head unit server.
